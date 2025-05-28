@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hacker Dropdown Menu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MARKETBLAST - Tools riset dan optimasi bisnis online</title>
   <style>
     body {
       margin: 0;
@@ -11,6 +11,17 @@
       font-family: 'Courier New', Courier, monospace;
       color: #00ff00;
       font-size: 1rem;
+    }
+
+    #loading-screen {
+      background-color: #000;
+      color: #00ff00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      font-family: 'Courier New', Courier, monospace;
     }
 
     .hacker-header {
@@ -100,10 +111,6 @@
       text-align: center;
     }
 
-    .h3 {
-      color: #00ff00;
-    }
-
     .done-button {
       padding: 12px 25px;
       background-color: #2ecc71;
@@ -188,58 +195,90 @@
 </head>
 <body>
 
-  <header class="hacker-header">
-    <div class="logo">[Terminal Marketblast]</div>
-    <nav class="nav">
-      <a href="#"></a>
-      <a href="#"></a>
-      <div class="dropdown">
-        <a href="#">Team ▾</a>
-        <div class="dropdown-content">
-          <a href="#">Support</a>
-          <a href="#">Admin</a>
-          <a href="#">Endorsement</a>
+  <!-- LOADING SCREEN -->
+  <div id="loading-screen">
+    <div style="font-size: 2.0rem; text-shadow: 0 0 10px #00ff00;">[MEMINTA AKSES]</div>
+    <div style="margin-top: 20px; font-size: 1rem;" id="loading-dots">.</div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="main-content" style="display:none;">
+
+    <header class="hacker-header">
+      <div class="logo">[Terminal Marketblast]</div>
+      <nav class="nav">
+        <a href="#"></a>
+        <a href="#"></a>
+        <div class="dropdown">
+          <a href="#">Team ▾</a>
+          <div class="dropdown-content">
+            <a href="#">Support</a>
+            <a href="#">Admin</a>
+            <a href="#">Endorsement</a>
+          </div>
         </div>
-      </div>
-      <a href="#">Developer</a>
-    </nav>
-  </header>
+        <a href="#">Developer</a>
+      </nav>
+    </header>
 
-  <br><br>
+    <br><br>
 
-  <div class="button-container" id="buttonContainer">
-    <h3>Blast Link Success</h3>
-    <button class="done-button" onclick="window.location.href='https://example.com'">Selesai</button>
+    <div class="button-container" id="buttonContainer">
+      <h3>Blast Link Success</h3>
+      <button class="done-button" onclick="window.location.href='https://introapp-me.github.io/marketblast.app/'">Selesai</button>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar">0%</div>
+    </div>
+
+    <div class="line-with-text">PROSES</div>
+
+    <div id="typing-container"></div>
+
+    <br><br>
+
+    <div class="line-with-text">SECTION</div>
   </div>
 
-  <div class="progress-container">
-    <div class="progress-bar" id="progressBar">0%</div>
-  </div>
+  <!-- SCRIPT -->
+  <script>
+    // LOADING DOTS
+    let dotCount = 1;
+    const loadingDots = document.getElementById('loading-dots');
+    const loadingInterval = setInterval(() => {
+      loadingDots.textContent = '.'.repeat(dotCount);
+      dotCount = dotCount < 3 ? dotCount + 1 : 1;
+    }, 500);
 
-  <div class="line-with-text">PROSES</div>
-
-  <div id="typing-container"></div>
-
-  <br><br>
-
-  <div class="line-with-text">SECTION</div>
+    // AFTER LOADING FINISH
+    setTimeout(() => {
+      clearInterval(loadingInterval);
+      document.getElementById('loading-screen').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      startProgress();  // Start progress bar
+      startTypingLoop(); // Start typing
+    }, 30000);
+  </script>
 
   <script>
     const progressBar = document.getElementById('progressBar');
     const buttonContainer = document.getElementById('buttonContainer');
-
     let progress = 0;
-    const interval = setInterval(() => {
-      if (progress < 100) {
-        progress++;
-        progressBar.style.width = progress + '%';
-        progressBar.textContent = progress + '%';
-      } else {
-        clearInterval(interval);
-        document.querySelector('.progress-container').style.display = 'none';
-        buttonContainer.style.display = 'block';
-      }
-    }, 450);
+
+    function startProgress() {
+      const interval = setInterval(() => {
+        if (progress < 100) {
+          progress++;
+          progressBar.style.width = progress + '%';
+          progressBar.textContent = progress + '%';
+        } else {
+          clearInterval(interval);
+          document.querySelector('.progress-container').style.display = 'none';
+          buttonContainer.style.display = 'block';
+        }
+      }, 450);
+    }
   </script>
 
   <script>
@@ -297,8 +336,7 @@
         }, 50000);
       }
     }
-
-    startTypingLoop();
   </script>
 </body>
-</html>
+            </html>
+      
